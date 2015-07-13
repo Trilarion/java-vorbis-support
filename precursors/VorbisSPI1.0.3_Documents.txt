@@ -1,0 +1,145 @@
+excerpt from the website: http://www.javazoom.net/vorbisspi/vorbisspi.html
+
+What is Ogg Vorbis ?
+"Ogg Vorbis is a fully Open, non-proprietary, patent-and-royalty-free, general-purpose compressed audio format for high quality (44.1-48.0kHz, 16+ bit, polyphonic) audio and music at fixed and variable bitrates from 16 to 128 kbps/channel. This places Vorbis in the same class as audio representations including MPEG-1 audio layer 3, MPEG-4 audio (AAC and TwinVQ), and PAC". Extract from OggVorbis homepage.
+In addition to friendly license, sound quality is better for similar MP3 file size and decoding algorithm implementation is faster.
+
+How to install Vorbis SPI ?
+Add vorbisspi1.0.2.jar, tritonus_share.jar, jorbis-0.0.15.jar, jogg-0.0.7.jar into
+your CLASSPATH.
+
+How to play Ogg Vorbis file with Vorbis SPI ?
+You have to use JavaSound API. Here is a sample below :
+(Sample source code is available in scrtest/ folder included in VorbisSPI package)
+
+[...]
+public void testPlay(String filename)
+{
+  try
+  {
+    File file = new File(filename);
+    // Get AudioInputStream from given file.	
+    AudioInputStream in= AudioSystem.getAudioInputStream(file);
+    AudioInputStream din = null;
+    if (in != null)
+    {
+        AudioFormat baseFormat = in.getFormat();
+        AudioFormat  decodedFormat = new AudioFormat(
+                AudioFormat.Encoding.PCM_SIGNED,
+                baseFormat.getSampleRate(),
+                16,
+                baseFormat.getChannels(),
+                baseFormat.getChannels() * 2,
+                baseFormat.getSampleRate(),
+                false);
+         // Get AudioInputStream that will be decoded by underlying VorbisSPI
+        din = AudioSystem.getAudioInputStream(decodedFormat, in);
+        // Play now !
+        rawplay(decodedFormat, din);
+        in.close();		
+    }
+  }
+  catch (Exception e)
+  {
+    e.printStackTrace();
+  }
+}
+
+private void rawplay(AudioFormat targetFormat, 
+                                   AudioInputStream din) throws IOException, LineUnavailableException
+{
+   byte[] data = new byte[4096];
+  SourceDataLine line = getLine(targetFormat);		
+  if (line != null)
+  {
+     // Start
+    line.start();
+     int nBytesRead = 0, nBytesWritten = 0;
+     while (nBytesRead != -1)
+    {
+        nBytesRead = din.read(data, 0, data.length);
+         if (nBytesRead != -1) nBytesWritten = line.write(data, 0, nBytesRead);
+    }
+     // Stop
+    line.drain();
+    line.stop();
+    line.close();
+    din.close();
+  }		
+}
+
+private SourceDataLine getLine(AudioFormat audioFormat) throws LineUnavailableException
+{
+  SourceDataLine res = null;
+  DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+  res = (SourceDataLine) AudioSystem.getLine(info);
+  res.open(audioFormat);
+  return res;
+}
+[...]
+
+How to play Ogg Vorbis URL or Icecast stream with Vorbis SPI ?
+It's the same as sample above. Just replace :
+File file = new File(filename);
+by :
+URL file = new URL(stream_or_url);
+
+How to play get Ogg Vorbis file properties and comments ?
+There are AudioFormat properties and AudioFileFormat properties. Most interesting properties and comments are available in AudioFileFormat instance. Here is a sample below :
+
+import org.tritonus.share.sampled.file.TAudioFileFormat
+[...]
+public void readProperties(String filename)
+{
+  try
+  {
+    File file = new File(filename);
+    // Get AudioFileFormat from given file.	
+    AudioFileFormat baseFileFormat baseFileFormat = AudioSystem.getAudioFileFormat(file);
+    if (baseFileFormat instanceof TAudioFileFormat)
+    {
+        Map props = ((TAudioFileFormat)baseFileFormat).properties();
+        // Length in seconds
+        long length = (long) Math.round((((Long)props.get("duration")).longValue())/1000000);
+        // Title of song (comment)
+        String title = (String)props.get("title");
+         // Nominal bitrate in bps
+        int nominalbitrate = ((Integer)props.get("ogg.bitrate.nominal.bps")).intValue();
+         // Sampling rate in hz
+        int rate = ((Integer)props.get("ogg.frequency.hz")).intValue();
+         // and so on ... check Javadoc or readme.txt for all properties (around 20)
+    }
+    catch (Exception e)
+    {
+        e.printStackTrace();
+    }
+}
+[...]
+
+Where is the list of all available properties ?
+Check out JavaDoc or readme.txt to find out all updated properties. Here is an extract of AudioFileFormat properties :
+
+    + Standard parameters :
+       - duration : [Long], duration in microseconds.
+       - title : [String], Title of the stream.
+       - author : [String], Name of the artist of the stream.
+       - album : [String], Name of the album of the stream.
+       - date : [String], The date (year) of the recording or release of the stream.
+       - copyright : [String], Copyright message of the stream.
+       - comment : [String], Comment of the stream.
+    + Extended Ogg Vorbis parameters :
+       - ogg.length.bytes : [Integer], length in bytes.
+       - ogg.bitrate.min.bps : [Integer], minimum bitrate.
+       - ogg.bitrate.nominal.bps : [Integer], nominal bitrate.
+       - ogg.bitrate.max.bps :  [Integer], maximum bitrate.
+       - ogg.channels : [Integer], number of channels 1 : mono, 2 : stereo.
+       - ogg.frequency.hz :  [Integer], sampling rate in hz.
+       - ogg.version : [Integer], version.
+       - ogg.serial : [Integer], serial number.
+       - ogg.comment.track : [String], track number.
+       - ogg.comment.genre : [String], genre field.
+       - ogg.comment.encodedby : [String], encoded by field.
+       - ogg.comment.ext : [String], extended comments (indexed): 
+         For instance : 
+          ogg.comment.ext.1=Something 
+          ogg.comment.ext.2=Another comment

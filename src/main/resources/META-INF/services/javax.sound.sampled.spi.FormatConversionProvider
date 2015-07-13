@@ -1,0 +1,2 @@
+# provider of ogg-vorbis decoding services
+com.github.trilarion.spi.vorbis.sampled.convert.VorbisFormatConversionProvider
