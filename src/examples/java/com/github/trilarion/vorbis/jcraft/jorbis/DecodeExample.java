@@ -17,20 +17,19 @@
  */
 package com.github.trilarion.vorbis.jcraft.jorbis;
 
-import com.github.trilarion.jcraft.jogg.Packet;
-import com.github.trilarion.jcraft.jogg.Page;
-import com.github.trilarion.jcraft.jogg.StreamState;
-import com.github.trilarion.jcraft.jogg.SyncState;
-import com.github.trilarion.jcraft.jorbis.Block;
-import com.github.trilarion.jcraft.jorbis.Comment;
-import com.github.trilarion.jcraft.jorbis.DspState;
-import com.github.trilarion.jcraft.jorbis.Info;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import com.github.trilarion.sound.vorbis.jcraft.jogg.Packet;
+import com.github.trilarion.sound.vorbis.jcraft.jogg.Page;
+import com.github.trilarion.sound.vorbis.jcraft.jogg.StreamState;
+import com.github.trilarion.sound.vorbis.jcraft.jogg.SyncState;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.Block;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.Comment;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.DspState;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.Info;
 
 /**
  * Takes a vorbis bitstream from stdin and writes raw stereo PCM to stdout.
@@ -40,7 +39,7 @@ import java.util.logging.Logger;
 class DecodeExample {
 
     private static final Logger LOG = Logger.getLogger(DecodeExample.class.getName());
-    private static int convsize = 4096 * 2;
+    private static final int convsize = 4096 * 2;
     private static final byte[] convbuffer = new byte[convsize]; // take 8k out of the data segment, not the stack
 
     public static void main(String[] arg) {
@@ -195,7 +194,7 @@ class DecodeExample {
                 LOG.log(Level.INFO, "\nBitstream is {0} channel, {1}Hz", new Object[]{vi.channels, vi.rate});
                 LOG.log(Level.INFO, "Encoded by: {0}\n", new String(vc.vendor, 0, vc.vendor.length - 1));
             }
-            convsize = 4096 / vi.channels;
+            // convsize = 4096 / vi.channels; // is this right?
 
             // OK, got and parsed all three headers. Initialize the Vorbis
             //  packet->PCM decoder.

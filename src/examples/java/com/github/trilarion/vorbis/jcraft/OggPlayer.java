@@ -16,14 +16,6 @@
  */
 package com.github.trilarion.vorbis.jcraft;
 
-import com.github.trilarion.jcraft.jogg.Packet;
-import com.github.trilarion.jcraft.jogg.Page;
-import com.github.trilarion.jcraft.jogg.StreamState;
-import com.github.trilarion.jcraft.jogg.SyncState;
-import com.github.trilarion.jcraft.jorbis.Block;
-import com.github.trilarion.jcraft.jorbis.Comment;
-import com.github.trilarion.jcraft.jorbis.DspState;
-import com.github.trilarion.jcraft.jorbis.Info;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,6 +26,14 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
+import com.github.trilarion.sound.vorbis.jcraft.jogg.Packet;
+import com.github.trilarion.sound.vorbis.jcraft.jogg.Page;
+import com.github.trilarion.sound.vorbis.jcraft.jogg.StreamState;
+import com.github.trilarion.sound.vorbis.jcraft.jogg.SyncState;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.Block;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.Comment;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.DspState;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.Info;
 
 /**
  * Based on JOrbisPlayer, but reduced to pure ogg file playback.

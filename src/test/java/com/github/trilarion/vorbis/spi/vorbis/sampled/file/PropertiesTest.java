@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFileFormat;
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import org.junit.Assert;
@@ -66,7 +65,6 @@ public class PropertiesTest {
             File file = new File(filename);
 
             AudioFileFormat baseFileFormat = AudioSystem.getAudioFileFormat(file);
-            AudioFormat baseFormat = baseFileFormat.getFormat();
             System.out.println("-> Filename : " + filename + " <-");
             System.out.println(baseFileFormat);
             Map<String, Object> properties = baseFileFormat.properties();
@@ -100,7 +98,6 @@ public class PropertiesTest {
         try {
             URL url = new URL(fileurl);
             AudioFileFormat baseFileFormat = AudioSystem.getAudioFileFormat(url);
-            AudioFormat baseFormat = baseFileFormat.getFormat();
             System.out.println("-> URL : " + fileurl + " <-");
             System.out.println(baseFileFormat);
             Map properties = baseFileFormat.properties();

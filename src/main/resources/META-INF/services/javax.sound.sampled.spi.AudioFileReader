@@ -1,2 +1,2 @@
 # provider of ogg-vorbis decoding services
-com.github.trilarion.spi.vorbis.sampled.file.VorbisAudioFileReader
+com.github.trilarion.sound.vorbis.sampled.spi.VorbisAudioFileReader

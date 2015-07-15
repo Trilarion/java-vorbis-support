@@ -17,20 +17,20 @@
  */
 package com.github.trilarion.vorbis.jcraft.jorbis;
 
-import com.github.trilarion.jcraft.jorbis.Comment;
-import com.github.trilarion.jcraft.jorbis.Info;
-import com.github.trilarion.jcraft.jorbis.JOrbisException;
-import com.github.trilarion.jcraft.jorbis.VorbisFile;
 import java.util.logging.Logger;
+import com.github.trilarion.sound.util.SoundException;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.Comment;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.Info;
+import com.github.trilarion.sound.vorbis.jcraft.jorbis.VorbisFile;
 
 /**
  *
  */
-class ChainingExample {
+public class ChainingExample {
 
     private static final Logger LOG = Logger.getLogger(ChainingExample.class.getName());
 
-    public static void main(String[] arg) throws JOrbisException {
+    public static void main(String[] arg) throws SoundException {
         VorbisFile ov;
         ov = new VorbisFile("Agogo.ogg");
 

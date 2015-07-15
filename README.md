@@ -6,7 +6,7 @@ Combination and continuation of JOrbis, JavaSPI and Tritonus-Share to provide Og
 
 - [Homepage](https://github.com/Trilarion/java-vorbis-support) of java-vorbis-support
 - Requires Java 7 or later
-- Download [vorbis-support-1.0.1.jar](https://github.com/Trilarion/java-vorbis-support/releases/download/v1.0.1/vorbis-support-1.0.1.jar) (released 19th June 2015) and/or [source code](https://github.com/Trilarion/java-vorbis-support/releases/tag/v1.0.1)
+- Download [vorbis-support-1.0.1.jar](https://github.com/Trilarion/java-vorbis-support/releases/download/v1.1.0/vorbis-support-1.1.0.jar) (released 15th July 2015) and/or [source code](https://github.com/Trilarion/java-vorbis-support/releases/tag/v1.1.0)
 - License is [LGPLv3+](http://www.gnu.org/licenses/lgpl-3.0.txt)
 - Support/Feedback: Create an [issue](https://github.com/Trilarion/java-vorbis-support/issues)
 

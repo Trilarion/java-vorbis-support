@@ -19,7 +19,6 @@ package com.github.trilarion.vorbis.spi;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -31,7 +30,6 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import com.github.trilarion.spi.PropertiesContainer;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,6 +37,8 @@ import org.junit.Test;
  * Simple player (based on SPI) unit test.
  */
 public class SPIDecoderTest {
+
+    private static final Logger LOG = Logger.getLogger(SPIDecoderTest.class.getName());
 
     private String filename = null;
     private String fileurl = null;
@@ -77,11 +77,6 @@ public class SPIDecoderTest {
                 System.out.println(" Target Format : " + decodedFormat.toString());
 
                 AudioInputStream dataIn = AudioSystem.getAudioInputStream(decodedFormat, in);
-                if (dataIn instanceof PropertiesContainer) {
-                    // it's a PropertiesContainer = OK
-                } else {
-                    Assert.fail("Wrong PropertiesContainer instance");
-                }
                 // play
                 rawplay(decodedFormat, dataIn);
 
@@ -118,11 +113,6 @@ public class SPIDecoderTest {
                 System.out.println(" Target Format : " + decodedFormat.toString());
 
                 AudioInputStream dataIn = AudioSystem.getAudioInputStream(decodedFormat, in);
-                if (dataIn instanceof PropertiesContainer) {
-                    // it's a PropertiesContainer = OK
-                } else {
-                    Assert.fail("Wrong PropertiesContainer instance");
-                }
                 rawplay(decodedFormat, dataIn);
 
                 System.out.println("Stop : " + filename);
@@ -165,5 +155,4 @@ public class SPIDecoderTest {
             dataIn.close();
         }
     }
-    private static final Logger LOG = Logger.getLogger(SPIDecoderTest.class.getName());
 }
