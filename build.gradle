@@ -1,8 +1,10 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
 description = 'Combination of JOrbis, JavaSPI and Tritonus-Share.'
 version = '1.0.0'
-
-apply plugin: 'java'
-
+group = 'com.github.trilarion'
 archivesBaseName = 'vorbis-support'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -34,7 +36,7 @@ task run(dependsOn: classes, type: JavaExec) {
     }
     classpath = sourceSets.main.runtimeClasspath + sourceSets.examples.runtimeClasspath
     standardInput = System.in
-    workingDir = sourceSets.examples.output.resourcesDir
+    workingDir = sourceSets.test.output.resourcesDir
 }
 
 task debug(dependsOn: classes, type: JavaExec) {
@@ -43,13 +45,74 @@ task debug(dependsOn: classes, type: JavaExec) {
     }
     classpath = sourceSets.main.runtimeClasspath + sourceSets.examples.runtimeClasspath
     standardInput = System.in
-    workingDir = sourceSets.examples.output.resourcesDir
+    workingDir = sourceSets.test.output.resourcesDir
     debug = true
 }
 
-if (sourceSets.examples.output.resourcesDir.exists()) {
-    test.workingDir = sourceSets.examples.output.resourcesDir
+if (!sourceSets.test.output.resourcesDir.exists()) {
+    sourceSets.test.output.resourcesDir.mkdirs()
+}
+test.workingDir = sourceSets.test.output.resourcesDir
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
 }
 
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
+artifacts {
+    archives javadocJar, sourcesJar
+}
 
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.project {
+        name 'vorbis support'
+        packaging 'jar'
+        // optionally artifactId can be defined here 
+        description 'Combination of JOrbis, JavaSPI and Tritonus-Share.'
+        url 'https://github.com/Trilarion/java-vorbis-support'
+
+        scm {
+          connection 'scm:git:https://github.com/Trilarion/java-vorbis-support.git'
+          developerConnection 'scm:git:https://github.com/Trilarion/java-vorbis-support.git'
+          url 'https://github.com/Trilarion/java-vorbis-support'
+        }
+
+        licenses {
+          license {
+            name 'GNU LIBRARY GENERAL PUBLIC LICENSE, Version 2.0'
+            url 'http://www.gnu.org/licenses/old-licenses/lgpl-2.0.txt'
+          }
+        }
+
+        developers {
+          developer {
+            id 'Trilarion'
+            name 'Trilarion'
+            email 'trilarion@twelvepm.de'
+          }
+        }
+      }
+    }
+  }
+}

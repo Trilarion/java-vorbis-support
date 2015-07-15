@@ -4,7 +4,7 @@ JOrbis (http://www.jcraft.com/jorbis/), VorbisSPI (http://www.javazoom.net/vorbi
 
 Here they are combined and further developed.
 
-This library is licensed under  LGPLv3 (http://www.gnu.org/licenses/lgpl-3.0.txt) and Java 7 or later is required.
+This library is licensed under  LGPLv2 (http://www.gnu.org/licenses/lgpl-2.0.txt) and Java 7 or later is required.
 
 Please refer to https://github.com/Trilarion/java-vorbis-support as homepage of this library.
 
@@ -12,7 +12,7 @@ Please refer to https://github.com/Trilarion/java-vorbis-support as homepage of 
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
-by the Free Software Foundation, either version 3 of the License, or
+by the Free Software Foundation, either version 2 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
