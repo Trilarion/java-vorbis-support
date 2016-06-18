@@ -89,7 +89,7 @@ uploadArchives {
                 name 'vorbis support'
                 packaging 'jar'
                 // optionally artifactId can be defined here 
-                description 'Combination of JOrbis, JavaSPI and Tritonus-Share.'
+                description 'Vorbis SPI support. Combination of JOrbis, JavaSPI and Tritonus-Share.'
                 url 'https://github.com/Trilarion/java-vorbis-support'
 
                 scm {

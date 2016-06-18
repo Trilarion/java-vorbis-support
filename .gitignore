@@ -2,3 +2,4 @@
 /.nb-gradle/
 /.gradle/
 /gradle.properties
+/.nb-gradle-properties
