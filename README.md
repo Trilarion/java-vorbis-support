@@ -10,6 +10,10 @@ Combination and continuation of JOrbis, JavaSPI and Tritonus-Share to provide Og
 - License is [LGPLv3+](http://www.gnu.org/licenses/lgpl-3.0.txt)
 - Support/Feedback: Create an [issue](https://github.com/Trilarion/java-vorbis-support/issues)
 
+On Maven Central:
+- [vorbis-support 1.0.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.0.0%7Cjar) licensed under LGPLv2+
+- [vorbis-support 1.1.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.1.0%7Cjar) licensed under LGPLv3+
+
 ## Introduction
 
 Ogg/Vorbis is a widely used free audio format featuring high compression ratios and there are libraries who enable support for Ogg in Java. Among them are [JOrbis](http://www.jcraft.com/jorbis/)
@@ -76,6 +80,6 @@ and access your sound resources (SourceDataLine or Clip) as you would without Og
         // failed
     } 
 
-	## Alternatives
-	
-	[VorbisJava](https://github.com/Gagravarr/VorbisJava) by Gagravarr.
+## Alternatives
+
+[VorbisJava](https://github.com/Gagravarr/VorbisJava) by Gagravarr.
