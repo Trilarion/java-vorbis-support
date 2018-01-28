@@ -1,5 +1,9 @@
-/build/
-/.nb-gradle/
-/.gradle/
-/gradle.properties
-/.nb-gradle-properties
+# IntelliJ
+.idea
+*.iml
+
+# Gradle
+.gradle
+build
+gradle.properties
+
