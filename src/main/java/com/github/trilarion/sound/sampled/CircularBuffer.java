@@ -40,12 +40,12 @@ public class CircularBuffer {
     /**
      *  Listener
      */
-    static public interface BufferListener {
+    public interface BufferListener {
 
         /**
          * Data is ready.
          */
-        public void dataReady();
+        void dataReady();
 
     }
 

@@ -78,7 +78,7 @@ public abstract class MatrixFormatConversionProvider
         for (int nSourceFormat = 0;
                 nSourceFormat < sourceFormats.size();
                 nSourceFormat++) {
-            AudioFormat sourceFormat = (AudioFormat) sourceFormats.get(nSourceFormat);
+            AudioFormat sourceFormat = sourceFormats.get(nSourceFormat);
             List<AudioFormat.Encoding> supportedTargetEncodings = new ArrayList<>();
             m_targetEncodingsFromSourceFormat.put(sourceFormat, supportedTargetEncodings);
             Map<AudioFormat.Encoding, Collection<AudioFormat>> targetFormatsFromTargetEncodings = new HashMap<>();
@@ -87,7 +87,7 @@ public abstract class MatrixFormatConversionProvider
             for (int nTargetFormat = 0;
                     nTargetFormat < targetFormats.size();
                     nTargetFormat++) {
-                AudioFormat targetFormat = (AudioFormat) targetFormats.get(nTargetFormat);
+                AudioFormat targetFormat = targetFormats.get(nTargetFormat);
                 if (abConversionPossible[nSourceFormat][nTargetFormat]) {
                     AudioFormat.Encoding targetEncoding = targetFormat.getEncoding();
                     supportedTargetEncodings.add(targetEncoding);

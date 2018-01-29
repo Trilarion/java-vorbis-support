@@ -1,6 +1,6 @@
 # Three external libraries
 
-## Ogg Vorbis SPI for Java™ Sound
+## Ogg Vorbis SPI for Java Sound
 
 http://www.javazoom.net/vorbisspi/vorbisspi.html
 

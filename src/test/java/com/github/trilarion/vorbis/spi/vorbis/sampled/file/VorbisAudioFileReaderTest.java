@@ -172,7 +172,7 @@ public class VorbisAudioFileReaderTest {
         }
     }
 
-    private static byte[] getByteArrayFromFile(final File file) throws FileNotFoundException, IOException {
+    private static byte[] getByteArrayFromFile(final File file) throws IOException {
         try (FileInputStream fis = new FileInputStream(file)) {
             final ByteArrayOutputStream bos = new ByteArrayOutputStream((int) file.length());
             final byte[] buffer = new byte[1024];

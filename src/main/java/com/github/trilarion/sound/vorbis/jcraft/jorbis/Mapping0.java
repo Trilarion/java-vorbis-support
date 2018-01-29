@@ -34,8 +34,6 @@ class Mapping0 extends FuncMapping {
     void free_info(Object imap) {
     }
 
-    ;
-
     @Override
     void free_look(Object imap) {
     }

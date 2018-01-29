@@ -46,7 +46,7 @@ public abstract class AsynchronousFilteredAudioInputStream
     /**
      *
      */
-    protected CircularBuffer m_circularBuffer;
+    private final CircularBuffer m_circularBuffer;
     private byte[] m_abSingleByte;
 
     /**

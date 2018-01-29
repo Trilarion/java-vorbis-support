@@ -786,7 +786,7 @@ public class JOrbisPlayer extends JApplet implements ActionListener, Runnable {
 
         int i = 0;
         udp_port = -1;
-        while (urlc != null && true) {
+        while (urlc != null) {
             String s = urlc.getHeaderField(i);
             String t = urlc.getHeaderFieldKey(i);
             if (s == null) {
@@ -992,7 +992,7 @@ public class JOrbisPlayer extends JApplet implements ActionListener, Runnable {
     void initUI() {
         panel = new JPanel();
 
-        cb = new JComboBox<>((String[]) playlist.toArray());
+        cb = new JComboBox<>(playlist.toArray(new String[0]));
         cb.setEditable(true);
         panel.add(cb);
 

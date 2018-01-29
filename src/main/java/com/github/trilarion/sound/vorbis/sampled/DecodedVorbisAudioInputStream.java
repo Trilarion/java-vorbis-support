@@ -42,7 +42,7 @@ public class DecodedVorbisAudioInputStream extends AsynchronousFilteredAudioInpu
 
     private static final Logger LOG = Logger.getLogger(DecodedVorbisAudioInputStream.class.getName());
 
-    private InputStream oggBitStream_ = null;
+    private InputStream oggBitStream_;
 
     private SyncState oggSyncState_ = null;
     private StreamState oggStreamState_ = null;
@@ -192,36 +192,39 @@ public class DecodedVorbisAudioInputStream extends AsynchronousFilteredAudioInpu
             case playState_WriteData:
                 // Decoding !
                 LOG.log(Level.FINE, "Decoding");
+                label:
                 while (true) {
                     result = oggStreamState_.packetout(oggPacket_);
-                    if (result == 0) {
-                        LOG.log(Level.FINE, "Packetout returned 0, going to read state.");
-                        playState = playState_ReadData;
-                        break;
-                    } // need more data
-                    else if (result == -1) {
-                        // missing or corrupt data at this page position
-                        // no reason to complain; already complained above
-                        LOG.log(Level.FINE, "Corrupt or missing data in packetout bitstream; going to read state...");
-                        // playState = playState_ReadData;
-                        // break;
-                        // continue;
-                    } else {
-                        // we have a packet.  Decode it
-                        if (vorbisBlock.synthesis(oggPacket_) == 0) { // test for success!
-                            vorbisDspState.synthesis_blockin(vorbisBlock);
-                        } else {
-                            //if(TDebug.TraceAudioConverter) TDebug.out("vorbisBlock.synthesis() returned !0, going to read state");
-                            LOG.log(Level.FINE, "VorbisBlock.synthesis() returned !0, continuing.");
-                            continue;
-                        }
+                    switch (result) {
+                        case 0:
+                            LOG.log(Level.FINE, "Packetout returned 0, going to read state.");
+                            playState = playState_ReadData;
+                            break label;
+                        case -1:
+                            // missing or corrupt data at this page position
+                            // no reason to complain; already complained above
+                            LOG.log(Level.FINE, "Corrupt or missing data in packetout bitstream; going to read state...");
+                            // playState = playState_ReadData;
+                            // break;
+                            // continue;
+                            break;
+                        default:
+                            // we have a packet.  Decode it
+                            if (vorbisBlock.synthesis(oggPacket_) == 0) { // test for success!
+                                vorbisDspState.synthesis_blockin(vorbisBlock);
+                            } else {
+                                //if(TDebug.TraceAudioConverter) TDebug.out("vorbisBlock.synthesis() returned !0, going to read state");
+                                LOG.log(Level.FINE, "VorbisBlock.synthesis() returned !0, continuing.");
+                                continue;
+                            }
 
-                        outputSamples();
-                        if (playState == playState_BufferFull) {
-                            return;
-                        }
+                            outputSamples();
+                            if (playState == playState_BufferFull) {
+                                return;
+                            }
 
-                    } // else result != -1
+                            break;
+                    }
                 } // while(true)
                 if (oggPage_.eos() != 0) {
                     LOG.log(Level.FINE, "Settings playState to playState_Done.");

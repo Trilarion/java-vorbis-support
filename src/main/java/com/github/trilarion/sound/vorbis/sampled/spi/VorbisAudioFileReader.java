@@ -70,7 +70,6 @@ public class VorbisAudioFileReader extends TAudioFileReader {
     private Info vorbisInfo = null;
     private Comment vorbisComment = null;
     private final int bufferMultiple_ = 4;
-    private final int bufferSize_ = bufferMultiple_ * 256 * 2;
     private byte[] buffer = null;
     private int bytes = 0;
 
@@ -349,6 +348,7 @@ public class VorbisAudioFileReader extends TAudioFileReader {
      */
     private void readHeaders(Map<String, Object> aff_properties, Map<String, Object> af_properties) throws IOException {
         LOG.log(Level.FINE, "readHeaders(");
+        int bufferSize_ = bufferMultiple_ * 256 * 2;
         index = oggSyncState_.buffer(bufferSize_);
         buffer = oggSyncState_.data;
         bytes = readFromStream(buffer, index, bufferSize_);

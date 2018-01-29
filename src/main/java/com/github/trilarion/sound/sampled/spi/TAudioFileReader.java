@@ -84,12 +84,9 @@ public abstract class TAudioFileReader extends AudioFileReader {
             throws UnsupportedAudioFileException, IOException {
         LOG.log(Level.FINE, "TAudioFileReader.getAudioFileFormat(File): begin (class: {0})", getClass().getSimpleName());
         long lFileLengthInBytes = file.length();
-        InputStream inputStream = new FileInputStream(file);
-        AudioFileFormat audioFileFormat = null;
-        try {
+        AudioFileFormat audioFileFormat;
+        try (InputStream inputStream = new FileInputStream(file)) {
             audioFileFormat = getAudioFileFormat(inputStream, lFileLengthInBytes);
-        } finally {
-            inputStream.close();
         }
         LOG.log(Level.FINE, "TAudioFileReader.getAudioFileFormat(File): end");
         return audioFileFormat;
@@ -112,12 +109,9 @@ public abstract class TAudioFileReader extends AudioFileReader {
             throws UnsupportedAudioFileException, IOException {
         LOG.log(Level.FINE, "TAudioFileReader.getAudioFileFormat(URL): begin (class: {0})", getClass().getSimpleName());
         long lFileLengthInBytes = getDataLength(url);
-        InputStream inputStream = url.openStream();
-        AudioFileFormat audioFileFormat = null;
-        try {
+        AudioFileFormat audioFileFormat;
+        try (InputStream inputStream = url.openStream()) {
             audioFileFormat = getAudioFileFormat(inputStream, lFileLengthInBytes);
-        } finally {
-            inputStream.close();
         }
         LOG.log(Level.FINE, "TAudioFileReader.getAudioFileFormat(URL): end");
         return audioFileFormat;
@@ -144,7 +138,7 @@ public abstract class TAudioFileReader extends AudioFileReader {
             inputStream = new BufferedInputStream(inputStream, getMarkLimit());
         }
         inputStream.mark(getMarkLimit());
-        AudioFileFormat audioFileFormat = null;
+        AudioFileFormat audioFileFormat;
         try {
             audioFileFormat = getAudioFileFormat(inputStream, lFileLengthInBytes);
         } finally {
@@ -200,7 +194,7 @@ public abstract class TAudioFileReader extends AudioFileReader {
         LOG.log(Level.FINE, "TAudioFileReader.getAudioInputStream(File): begin (class: {0})", getClass().getSimpleName());
         long lFileLengthInBytes = file.length();
         InputStream inputStream = new FileInputStream(file);
-        AudioInputStream audioInputStream = null;
+        AudioInputStream audioInputStream;
         try {
             audioInputStream = getAudioInputStream(inputStream, lFileLengthInBytes);
         } catch (UnsupportedAudioFileException | IOException e) {

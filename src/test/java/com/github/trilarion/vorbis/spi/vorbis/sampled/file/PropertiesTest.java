@@ -48,8 +48,8 @@ public class PropertiesTest {
 
         Properties props = new Properties();
         props.load(this.getClass().getClassLoader().getResourceAsStream("spi.test.properties"));
-        filename = (String) props.getProperty("filename");
-        fileurl = (String) props.getProperty("stream");
+        filename = props.getProperty("filename");
+        fileurl = props.getProperty("stream");
     }
 
     /**

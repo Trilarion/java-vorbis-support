@@ -41,15 +41,12 @@ import com.github.trilarion.sound.sampled.AudioFormats;
 // todo:
 // - declare a constant ALL_BUT_SAME_VALUE (==-2) or so that can be used in format lists
 // - consistent implementation of replacing NOT_SPECIFIED when not given in conversion
-public abstract class SimpleFormatConversionProvider
-        extends TFormatConversionProvider {
+public abstract class SimpleFormatConversionProvider extends TFormatConversionProvider {
 
     private static final Logger LOG = Logger.getLogger(SimpleFormatConversionProvider.class.getName());
 
     private static void collectEncodings(Collection<AudioFormat> formats, Collection<AudioFormat.Encoding> encodings) {
-        Iterator<AudioFormat> iterator = formats.iterator();
-        while (iterator.hasNext()) {
-            AudioFormat format = iterator.next();
+        for (AudioFormat format : formats) {
             encodings.add(format.getEncoding());
         }
     }
@@ -144,9 +141,7 @@ public abstract class SimpleFormatConversionProvider
      * @return
      */
     protected boolean isAllowedSourceFormat(AudioFormat sourceFormat) {
-        Iterator<AudioFormat> iterator = m_sourceFormats.iterator();
-        while (iterator.hasNext()) {
-            AudioFormat format = iterator.next();
+        for (AudioFormat format : m_sourceFormats) {
             if (AudioFormats.matches(format, sourceFormat)) {
                 return true;
             }
