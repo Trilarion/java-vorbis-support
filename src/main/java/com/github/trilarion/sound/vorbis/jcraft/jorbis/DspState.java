@@ -22,7 +22,6 @@ import com.github.trilarion.sound.util.Util;
 
 /**
  *
- * @author
  */
 public class DspState {
 

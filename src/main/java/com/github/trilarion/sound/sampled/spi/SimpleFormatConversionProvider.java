@@ -19,7 +19,6 @@ package com.github.trilarion.sound.sampled.spi;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
 import com.github.trilarion.sound.sampled.AudioFormats;

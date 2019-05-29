@@ -20,22 +20,20 @@ package com.github.trilarion.sound.vorbis.jcraft.jogg;
 // DECODING PRIMITIVES: packet streaming layer
 import java.util.logging.Logger;
 
-// This has two layers to place more of the multi-serialno and paging
-// control in the application's hands.  First, we expose a data buffer
-// using ogg_decode_buffer().  The app either copies into the
-// buffer, or passes it directly to read(), etc.  We then call
-// ogg_decode_wrote() to tell how many bytes we just added.
-//
-// Pages are returned (pointers into the buffer in ogg_sync_state)
-// by ogg_decode_stream().  The page is then submitted to
-// ogg_decode_page() along with the appropriate
-// ogg_stream_state* (ie, matching serialno).  We then get raw
-// packets out calling ogg_stream_packet() with a
-// ogg_stream_state.  See the 'frame-prog.txt' docs for details and
-// example code.
 /**
+ * This has two layers to place more of the multi-serialno and paging
+ * control in the application's hands.  First, we expose a data buffer
+ * using ogg_decode_buffer().  The app either copies into the
+ * buffer, or passes it directly to read(), etc.  We then call
+ * ogg_decode_wrote() to tell how many bytes we just added.
  *
- * @author
+ * Pages are returned (pointers into the buffer in ogg_sync_state)
+ * by ogg_decode_stream().  The page is then submitted to
+ * ogg_decode_page() along with the appropriate
+ * ogg_stream_state* (ie, matching serialno).  We then get raw
+ * packets out calling ogg_stream_packet() with a
+ * ogg_stream_state.  See the 'frame-prog.txt' docs for details and
+ * example code.
  */
 public class SyncState {
 

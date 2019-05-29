@@ -22,7 +22,6 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author
  */
 public class StreamState {
 

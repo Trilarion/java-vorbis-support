@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author
  */
 public class Buffer {
 
@@ -57,11 +56,11 @@ public class Buffer {
      * @param s
      */
     public void write(byte[] s) {
-        for (int i = 0; i < s.length; i++) {
-            if (s[i] == 0) {
+        for (byte b : s) {
+            if (b == 0) {
                 break;
             }
-            write(s[i], 8);
+            write(b, 8);
         }
     }
 

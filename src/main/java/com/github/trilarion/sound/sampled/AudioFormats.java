@@ -24,7 +24,6 @@ import javax.sound.sampled.AudioSystem;
 
 /**
  *
- * @author
  */
 public class AudioFormats {
 
@@ -52,7 +51,7 @@ public class AudioFormats {
      * <li> For a match, endianness must be equal if SampleSizeInBits is not
      * AudioSystem.NOT_SPECIFIED and greater than 8bit in both formats.<br>
      * In other words: If SampleSizeInBits is AudioSystem.NOT_SPECIFIED in
-     * either format or both formats have a SampleSizeInBits<8, endianness does
+     * either format or both formats have a SampleSizeInBits smaller than 8, endianness does
      * not matter. </ul> This is a proposition to be used as
      * AudioFormat.matches. It can therefore be considered as a temporary
      * workaround.

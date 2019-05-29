@@ -23,7 +23,6 @@ import com.github.trilarion.sound.vorbis.jcraft.jogg.Packet;
 
 /**
  *
- * @author
  */
 public class Block {
 

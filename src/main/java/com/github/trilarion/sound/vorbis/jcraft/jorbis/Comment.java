@@ -24,8 +24,6 @@ import com.github.trilarion.sound.vorbis.jcraft.jogg.Packet;
 /**
  * The comments are not part of vorbis_info so that vorbis_info can be static
  * storage.
- *
- * @author
  */
 public class Comment {
 

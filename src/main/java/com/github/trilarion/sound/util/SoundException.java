@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author
  */
 public class SoundException extends Exception {
 

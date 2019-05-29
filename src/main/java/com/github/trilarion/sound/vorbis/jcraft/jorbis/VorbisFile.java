@@ -30,7 +30,6 @@ import com.github.trilarion.sound.vorbis.jcraft.jogg.SyncState;
 
 /**
  *
- * @author
  */
 public class VorbisFile {
 
@@ -596,7 +595,7 @@ public class VorbisFile {
                 } else {
                     // we're streaming
                     // fetch the three header packets, build the info struct
-                    int foo[] = new int[1];
+                    int[] foo = new int[1];
                     int ret = fetch_headers(vi[0], vc[0], foo, og);
                     current_serialno = foo[0];
                     if (ret != 0) {
@@ -1170,7 +1169,7 @@ public class VorbisFile {
             }
         }
 
-        return ((float) time_total + (float) (pcm_offset - pcm_total) / vi[link].rate);
+        return (time_total + (float) (pcm_offset - pcm_total) / vi[link].rate);
     }
 
     //  link:   -1) return the vorbis_info struct for the bitstream section

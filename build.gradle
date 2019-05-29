@@ -1,13 +1,16 @@
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'signing'
+plugins {
+    id 'java'
+    id 'maven'
+    id 'signing'
+}
 
 description = 'Vorbis SPI support. Combination of JOrbis, JavaSPI and Tritonus-Share.'
-version = '1.1.1'
+version = '1.2.0'
 group = 'com.github.trilarion'
-archivesBaseName = 'vorbis-support'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+ext.moduleName = 'com.github.trilarion.sound'
+archivesBaseName = 'java-vorbis-support'
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
 
 repositories {
     mavenCentral()
@@ -18,8 +21,8 @@ sourceSets {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    examplesCompile sourceSets.main.output
+    testImplementation 'junit:junit:4.12'
+    examplesImplementation sourceSets.main.output
 }
 
 allprojects {
@@ -54,13 +57,20 @@ if (!sourceSets.test.output.resourcesDir.exists()) {
 }
 test.workingDir = sourceSets.test.output.resourcesDir
 
+jar {
+    inputs.property("moduleName", moduleName)
+    manifest {
+        attributes 'Automatic-Module-Name': moduleName
+    }
+}
+
 task javadocJar(type: Jar) {
-    classifier = 'javadoc'
+    archiveClassifier = 'javadoc'
     from javadoc
 }
 
 task sourcesJar(type: Jar) {
-    classifier = 'sources'
+    archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
 
@@ -86,7 +96,7 @@ uploadArchives {
             }
 
             pom.project {
-                name 'vorbis support'
+                name 'java vorbis support'
                 packaging 'jar'
                 // optionally artifactId can be defined here 
                 description 'Vorbis SPI support. Combination of JOrbis, JavaSPI and Tritonus-Share.'

@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -102,7 +103,7 @@ public class VorbisAudioFileReader extends TAudioFileReader {
             inputStream.reset();
             // Get Vorbis file info such as length in seconds.
             VorbisFile vf = new VorbisFile(file.getAbsolutePath());
-            return getAudioFileFormat(inputStream, (int) file.length(), (int) Math.round(vf.time_total(-1) * 1000));
+            return getAudioFileFormat(inputStream, (int) file.length(), Math.round(vf.time_total(-1) * 1000));
         } catch (SoundException e) {
             throw new IOException(e.getMessage());
         }
@@ -118,13 +119,8 @@ public class VorbisAudioFileReader extends TAudioFileReader {
     @Override
     public AudioFileFormat getAudioFileFormat(URL url) throws UnsupportedAudioFileException, IOException {
         LOG.log(Level.FINE, "getAudioFileFormat(URL url)");
-        InputStream inputStream = url.openStream();
-        try {
+        try (InputStream inputStream = url.openStream()) {
             return getAudioFileFormat(inputStream);
-        } finally {
-            if (inputStream != null) {
-                inputStream.close();
-            }
         }
     }
 
@@ -210,7 +206,7 @@ public class VorbisAudioFileReader extends TAudioFileReader {
         int nominalbitrate = -1;
         int maxbitrate = -1;
         if (ind != -1) {
-            dmp = dmp.substring(ind + 8, dmp.length());
+            dmp = dmp.substring(ind + 8);
             StringTokenizer st = new StringTokenizer(dmp, ",");
             if (st.hasMoreTokens()) {
                 minbitrate = Integer.parseInt(st.nextToken());
@@ -425,7 +421,7 @@ public class VorbisAudioFileReader extends TAudioFileReader {
             if (ptr1 == null) {
                 break;
             }
-            String currComment = new String(ptr1, 0, ptr1.length - 1, "UTF-8").trim();
+            String currComment = new String(ptr1, 0, ptr1.length - 1, StandardCharsets.UTF_8).trim();
             LOG.log(Level.FINE, currComment);
             if (currComment.toLowerCase(Locale.ENGLISH).startsWith("artist")) {
                 aff_properties.put("author", currComment.substring(7));
