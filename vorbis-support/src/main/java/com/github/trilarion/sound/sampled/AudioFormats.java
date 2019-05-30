@@ -25,7 +25,7 @@ import javax.sound.sampled.AudioSystem;
 /**
  *
  */
-public class AudioFormats {
+public final class AudioFormats {
 
     private static final Logger LOG = Logger.getLogger(AudioFormats.class.getName());
 
@@ -63,8 +63,8 @@ public class AudioFormats {
     // IDEA: create a special "NOT_SPECIFIED" encoding
     // and a AudioFormat.Encoding.matches method.
     public static boolean matches(AudioFormat format1,
-            AudioFormat format2) {
-		//$$fb 19 Dec 99: endian must be checked, too.
+                                  AudioFormat format2) {
+        //$$fb 19 Dec 99: endian must be checked, too.
         //
         // we do have a problem with redundant elements:
         // e.g.
@@ -77,7 +77,7 @@ public class AudioFormats {
         //
         // As a workaround of this issue I return in the converters
         // all combinations, e.g. for ULAW I return bigEndian and !bigEndian formats.
-/* old version
+        /* old version
          */
         // as proposed by florian
         return format1.getEncoding().equals(format2.getEncoding())

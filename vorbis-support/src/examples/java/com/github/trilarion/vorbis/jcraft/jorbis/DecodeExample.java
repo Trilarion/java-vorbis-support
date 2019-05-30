@@ -36,7 +36,7 @@ import com.github.trilarion.sound.vorbis.jcraft.jorbis.Info;
  * Decodes simple and chained OggVorbis files from beginning to end. is somewhat
  * more complex than the code below.
  */
-class DecodeExample {
+final class DecodeExample {
 
     private static final Logger LOG = Logger.getLogger(DecodeExample.class.getName());
     private static final int convsize = 4096 * 2;

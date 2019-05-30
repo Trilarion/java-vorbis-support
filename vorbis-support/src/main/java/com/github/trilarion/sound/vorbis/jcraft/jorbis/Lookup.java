@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 /**
  *
  */
-class Lookup {
+final class Lookup {
 
     private static final Logger LOG = Logger.getLogger(Lookup.class.getName());
 

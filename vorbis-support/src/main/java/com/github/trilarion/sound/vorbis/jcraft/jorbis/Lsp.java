@@ -28,7 +28,7 @@ import java.util.logging.Logger;
   
  http://www2.xtdl.com/~rothwlr/lsfpaper/lsfpage.html 
  ********************************************************************/
-class Lsp {
+final class Lsp {
 
     private static final Logger LOG = Logger.getLogger(Lsp.class.getName());
 

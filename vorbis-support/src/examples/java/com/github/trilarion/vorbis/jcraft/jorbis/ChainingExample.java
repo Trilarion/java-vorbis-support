@@ -26,7 +26,7 @@ import com.github.trilarion.sound.vorbis.jcraft.jorbis.VorbisFile;
 /**
  *
  */
-public class ChainingExample {
+public final class ChainingExample {
 
     private static final Logger LOG = Logger.getLogger(ChainingExample.class.getName());
 
