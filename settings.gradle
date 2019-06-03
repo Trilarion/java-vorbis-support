@@ -1,0 +1,3 @@
+rootProject.name = 'sound'
+
+include ':vorbis-support',':examples'

@@ -12,44 +12,8 @@ archivesBaseName = 'java-vorbis-support'
 sourceCompatibility = 1.9
 targetCompatibility = 1.9
 
-repositories {
-    mavenCentral()
-}
-
-sourceSets {
-    examples
-}
-
 dependencies {
     testImplementation 'junit:junit:4.12'
-    examplesImplementation sourceSets.main.output
-}
-
-allprojects {
-    gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-        }
-    }
-}
-
-task run(dependsOn: classes, type: JavaExec) {
-    if (project.hasProperty('mainClass')) {
-        main = mainClass        
-    }
-    classpath = sourceSets.main.runtimeClasspath + sourceSets.examples.runtimeClasspath
-    standardInput = System.in
-    workingDir = sourceSets.test.output.resourcesDir
-}
-
-task debug(dependsOn: classes, type: JavaExec) {
-    if (project.hasProperty('mainClass')) {
-        main = mainClass        
-    }
-    classpath = sourceSets.main.runtimeClasspath + sourceSets.examples.runtimeClasspath
-    standardInput = System.in
-    workingDir = sourceSets.test.output.resourcesDir
-    debug = true
 }
 
 if (!sourceSets.test.output.resourcesDir.exists()) {

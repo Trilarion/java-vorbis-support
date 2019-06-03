@@ -5,14 +5,15 @@ Combination and continuation of JOrbis, JavaSPI and Tritonus-Share to provide Og
 ## Download, License, Feedback
 
 - [Homepage](https://github.com/Trilarion/java-vorbis-support) of java-vorbis-support
-- Requires Java 7 or later
-- Download [vorbis-support-1.1.0.jar](https://github.com/Trilarion/java-vorbis-support/releases/download/v1.1.0/vorbis-support-1.1.0.jar) (released 15th July 2015) and/or [source code](https://github.com/Trilarion/java-vorbis-support/releases/tag/v1.1.0)
+- Requires Java 9 or later
+- Download [vorbis-support-1.2.0.jar](https://github.com/Trilarion/java-vorbis-support/releases/download/v1.2.0/vorbis-support-1.2.0.jar) (released 4th June 2019) and/or [source code](https://github.com/Trilarion/java-vorbis-support/releases/tag/v1.2.0)
 - License is [LGPLv3+](http://www.gnu.org/licenses/lgpl-3.0.txt)
 - Support/Feedback: Create an [issue](https://github.com/Trilarion/java-vorbis-support/issues)
 
 On Maven Central:
-- [vorbis-support 1.0.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.0.0%7Cjar) licensed under LGPLv2+
+- [java-vorbis-support 1.2.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.2.0%7Cjar) licensed under LGPLv3+
 - [vorbis-support 1.1.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.1.0%7Cjar) licensed under LGPLv3+
+- [vorbis-support 1.0.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.0.0%7Cjar) licensed under LGPLv2+
 
 ## Introduction
 
@@ -78,7 +79,11 @@ and access your sound resources (SourceDataLine or Clip) as you would without Og
         }
     } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
         // failed
-    } 
+    }
+
+Run an example with
+
+    ./gradlew run :examples:run
 
 ## Alternatives
 

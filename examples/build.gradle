@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+dependencies {
+    // implementation project(':vorbis-support')
+    implementation 'com.github.trilarion:vorbis-support:1.1.0'
+}
+
+ext.mainClass = 'com.github.trilarion.vorbis.jcraft.OggPlayer'
+
+task run(dependsOn: classes, type: JavaExec) {
+    if (project.hasProperty('mainClass')) {
+        main = mainClass
+    }
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = sourceSets.main.output.resourcesDir
+}
+
+task debug(dependsOn: classes, type: JavaExec) {
+    if (project.hasProperty('mainClass')) {
+        main = mainClass        
+    }
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = sourceSets.main.output.resourcesDir
+    debug = true
+}
