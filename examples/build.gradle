@@ -2,12 +2,11 @@ plugins {
     id 'java'
 }
 
-sourceCompatibility = 1.9
-targetCompatibility = 1.9
+sourceCompatibility = 1.8
 
 dependencies {
-    // implementation project(':vorbis-support')
-    implementation 'com.github.trilarion:vorbis-support:1.1.0'
+    implementation project(':vorbis-support')
+    // implementation 'com.github.trilarion:vorbis-support:1.2.1'
 }
 
 ext.mainClass = 'com.github.trilarion.vorbis.jcraft.OggPlayer'

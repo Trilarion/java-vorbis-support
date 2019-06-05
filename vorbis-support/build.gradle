@@ -5,12 +5,11 @@ plugins {
 }
 
 description = 'Vorbis SPI support. Combination of JOrbis, JavaSPI and Tritonus-Share.'
-version = '1.2.0'
+version = '1.2.1'
 group = 'com.github.trilarion'
 ext.moduleName = 'com.github.trilarion.sound'
 archivesBaseName = 'java-vorbis-support'
-sourceCompatibility = 1.9
-targetCompatibility = 1.9
+sourceCompatibility = 1.8
 
 dependencies {
     testImplementation 'junit:junit:4.12'

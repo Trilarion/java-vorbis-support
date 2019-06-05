@@ -5,13 +5,13 @@ Combination and continuation of JOrbis, JavaSPI and Tritonus-Share to provide Og
 ## Download, License, Feedback
 
 - [Homepage](https://github.com/Trilarion/java-vorbis-support) of java-vorbis-support
-- Requires Java 9 or later
-- Download [vorbis-support-1.2.0.jar](https://github.com/Trilarion/java-vorbis-support/releases/download/v1.2.0/vorbis-support-1.2.0.jar) (released 4th June 2019) and/or [source code](https://github.com/Trilarion/java-vorbis-support/releases/tag/v1.2.0)
+- Requires Java 8 or later
+- Download [vorbis-support-1.2.1.jar](https://github.com/Trilarion/java-vorbis-support/releases/download/v1.2.0/vorbis-support-1.2.1.jar) (released 5th June 2019) and/or [source code](https://github.com/Trilarion/java-vorbis-support/releases/tag/v1.2.1)
 - License is [LGPLv3+](http://www.gnu.org/licenses/lgpl-3.0.txt)
 - Support/Feedback: Create an [issue](https://github.com/Trilarion/java-vorbis-support/issues)
 
 On Maven Central:
-- [java-vorbis-support 1.2.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.2.0%7Cjar) licensed under LGPLv3+
+- [java-vorbis-support 1.2.1](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.2.1%7Cjar) licensed under LGPLv3+
 - [vorbis-support 1.1.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.1.0%7Cjar) licensed under LGPLv3+
 - [vorbis-support 1.0.0](https://search.maven.org/#artifactdetails%7Ccom.github.trilarion%7Cvorbis-support%7C1.0.0%7Cjar) licensed under LGPLv2+
 
